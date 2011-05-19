@@ -1,0 +1,11 @@
+{
+   "meta":{
+      "code":200
+   },
+   "data":{
+      "latitude":37.782654745657382,
+      "id":"1",
+      "longitude":-122.387866973877,
+      "name":"Dogpatch Labs"
+   }
+}

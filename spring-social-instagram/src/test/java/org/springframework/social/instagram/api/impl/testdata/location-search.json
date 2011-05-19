@@ -1,0 +1,127 @@
+{
+   "meta":{
+      "code":200
+   },
+   "data":[
+      {
+         "latitude":48.858844300000001,
+         "id":"788029",
+         "longitude":2.2943506,
+         "name":"Eiffel Tower, Paris"
+      },
+      {
+         "latitude":48.858844300000001,
+         "id":"723695",
+         "longitude":2.2943506,
+         "name":"Restaurant Jules Verne"
+      },
+      {
+         "latitude":48.858542999999997,
+         "id":"1894075",
+         "longitude":2.2938285,
+         "name":"Caf\u00e9 de l'homme"
+      },
+      {
+         "latitude":48.858913000000001,
+         "id":"1537464",
+         "longitude":2.2936209999999999,
+         "name":"Le Sommet de la Tour Eiffel - Bar \u00e0 Champagne"
+      },
+      {
+         "latitude":48.858362294649311,
+         "id":"3290",
+         "longitude":2.2945761680603032,
+         "name":"Tour Eiffel - Eiffel Tower"
+      },
+      {
+         "latitude":48.858334059662262,
+         "id":"545331",
+         "longitude":2.2943401336669922,
+         "name":"Restaurant 58 Tour Eiffel"
+      },
+      {
+         "latitude":48.858325999999998,
+         "id":"421930",
+         "longitude":2.294505,
+         "name":"American Library in Paris"
+      },
+      {
+         "latitude":48.858314752578742,
+         "id":"1457289",
+         "longitude":2.295042872428894,
+         "name":"Effiel tower"
+      },
+      {
+         "latitude":48.858145999999998,
+         "id":"1319603",
+         "longitude":2.2947380000000002,
+         "name":"Top of Eiffel Tower"
+      },
+      {
+         "latitude":48.859878999999999,
+         "id":"1102705",
+         "longitude":2.2950409999999999,
+         "name":"Avenue De La Bourdonnais"
+      },
+      {
+         "latitude":48.859745789503847,
+         "id":"1611879",
+         "longitude":2.292108535766602,
+         "name":"Pont d'I\u00e9na"
+      },
+      {
+         "latitude":48.858347799999997,
+         "id":"984003",
+         "longitude":2.2918128000000002,
+         "name":"Salon des vedettes de Paris"
+      },
+      {
+         "latitude":48.858524000000003,
+         "id":"1032207",
+         "longitude":2.2914629999999998,
+         "name":"Mercure Paris Suffren Tour eiffel"
+      },
+      {
+         "latitude":48.858764641483972,
+         "id":"931935",
+         "longitude":2.291110754013062,
+         "name":"La Croisiere decouverte de Paris"
+      },
+      {
+         "latitude":48.859302700000001,
+         "id":"1103504",
+         "longitude":2.2976052,
+         "name":"Boulangerie de la Tour Eiffel"
+      },
+      {
+         "latitude":48.859090999999999,
+         "id":"1076856",
+         "longitude":2.2976619999999999,
+         "name":"Bistrot de la Tour Eiffel"
+      },
+      {
+         "latitude":48.859696,
+         "id":"1460338",
+         "longitude":2.2976570000000001,
+         "name":"The Eiffel Tower"
+      },
+      {
+         "latitude":48.856903910636902,
+         "id":"2072178",
+         "longitude":2.2920509999999998,
+         "name":"Castel Caf\u00e9"
+      },
+      {
+         "latitude":48.861117,
+         "id":"1228824",
+         "longitude":2.2959132000000002,
+         "name":"Bateaux Parisiens"
+      },
+      {
+         "latitude":48.860464999999998,
+         "id":"1691251",
+         "longitude":2.291277,
+         "name":"Theatre de Chaillot"
+      }
+   ]
+}

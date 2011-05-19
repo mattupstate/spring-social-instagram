@@ -1,0 +1,5 @@
+Spring Social Instagram 1.0.0 RC1 (May ??, 2011)
+===============================================
+  * Spring Social Instagram extracted into a standalone project that can
+    evolve and release independent of Spring Social releases.
+
