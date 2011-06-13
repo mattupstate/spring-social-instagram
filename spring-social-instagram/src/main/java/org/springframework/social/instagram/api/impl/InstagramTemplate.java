@@ -13,7 +13,7 @@ import org.springframework.social.instagram.api.LocationOperations;
 import org.springframework.social.instagram.api.MediaOperations;
 import org.springframework.social.instagram.api.TagOperations;
 import org.springframework.social.instagram.api.UserOperations;
-import org.springframework.social.oauth2.AbstractOAuth2ApiTemplate;
+import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
 import org.springframework.social.support.URIBuilder;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,7 +31,7 @@ import org.springframework.web.client.RestTemplate;
  * will result in {@link IllegalStateException} being thrown.
  * </p>
  */
-public class InstagramTemplate extends AbstractOAuth2ApiTemplate implements Instagram {
+public class InstagramTemplate extends AbstractOAuth2ApiBinding implements Instagram {
     
 	private final String accessToken;
 	private final String clientId;
