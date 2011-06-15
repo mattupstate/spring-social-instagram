@@ -7,7 +7,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
-import org.springframework.social.BadCredentialsException;
 import org.springframework.social.instagram.api.Instagram;
 import org.springframework.social.instagram.api.LocationOperations;
 import org.springframework.social.instagram.api.MediaOperations;

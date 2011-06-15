@@ -4,19 +4,20 @@ import java.net.URI;
 import java.util.Collections;
 import java.util.Map;
 
+import org.springframework.social.MissingAuthorizationException;
 import org.springframework.social.support.URIBuilder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 public abstract class AbstractInstagramOperations {
 	
-	private final boolean isAuthorizedForUser;
+	private final boolean isAuthorized;
 	
 	protected final InstagramTemplate instagram;
 	
-	public AbstractInstagramOperations(InstagramTemplate instagram, boolean isAuthorizedForUser) {
+	public AbstractInstagramOperations(InstagramTemplate instagram, boolean isAuthorized) {
 		this.instagram = instagram;
-		this.isAuthorizedForUser = isAuthorizedForUser;
+		this.isAuthorized = isAuthorized;
 	}
 	
 	protected <T> T get(URI uri, Class<T> responseType) {
@@ -34,8 +35,8 @@ public abstract class AbstractInstagramOperations {
 	}
 	
 	protected void requireUserAuthorization() {
-		if(!isAuthorizedForUser) {
-			throw new IllegalStateException("User authorization required: InstagramTemplate must be created with OAuth credentials to perform this operation.");
+		if(!isAuthorized) {
+			throw new MissingAuthorizationException();
 		}
 	}
 	

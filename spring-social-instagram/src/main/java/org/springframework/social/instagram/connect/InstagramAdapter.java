@@ -1,6 +1,6 @@
 package org.springframework.social.instagram.connect;
 
-import org.springframework.social.BadCredentialsException;
+import org.springframework.social.ApiException;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;
@@ -17,7 +17,7 @@ public class InstagramAdapter implements ApiAdapter<Instagram> {
 		try {
 			instagram.userOperations().getUser();
 			return true;
-		} catch (BadCredentialsException e) {
+		} catch (ApiException e) {
 			return false;
 		}
 	}
