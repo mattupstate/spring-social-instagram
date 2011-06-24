@@ -52,7 +52,7 @@ public class MediaTemplate extends AbstractInstagramOperations implements MediaO
 	}
 
 	public Media getMedia(long mediaId) {
-		return get(buildUri(MEDIA_ENDPOINT + Long.toString(mediaId)+ "/"), Media.class);
+		return get(buildUri(MEDIA_ENDPOINT + Long.toString(mediaId)+ "/"), MediaContainer.class).getMedia();
 	}
 
 	public List<Media> getPopular() {
