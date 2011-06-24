@@ -1,5 +1,6 @@
 package org.springframework.social.instagram.api.impl;
 
+import static org.junit.Assert.assertEquals;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.social.test.client.RequestMatchers.body;
@@ -25,6 +26,7 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/user-profile.json", getClass()), responseHeaders));
 		
 		InstagramProfile user = instagram.userOperations().getUser();
+		assertEquals("tomharman", user.getUsername());
 		mockServer.verify();
 	}
 	
@@ -35,6 +37,7 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/user-profile.json", getClass()), responseHeaders));
 		
 		InstagramProfile user = instagram.userOperations().getUser(12345);
+		assertEquals("tomharman", user.getUsername());
 		mockServer.verify();
 	}
 	

@@ -1,6 +1,7 @@
 package org.springframework.social.instagram.api.impl;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.HttpMethod.DELETE;
@@ -27,6 +28,7 @@ public class MediaTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/media.json", getClass()), responseHeaders));
 		
 		Media media = instagram.mediaOperations().getMedia(48904105);
+		assertEquals(48904105, media.getId());
 		mockServer.verify();
 	}
 	

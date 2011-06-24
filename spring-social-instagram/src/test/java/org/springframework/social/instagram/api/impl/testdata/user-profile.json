@@ -4,13 +4,15 @@
    },
    "data":{
       "username":"tomharman",
-      "counts":{
-         "media":69,
-         "followed_by":68,
-         "follows":58
-      },
+      "bio":"",
+      "website":"http://harmantom.com",
       "profile_picture":"http://images.instagram.com/profiles/profile_6948_75sq_1295839075.jpg",
-      "id":"6948",
-      "full_name":"Tom Harman"
+      "full_name":"Tom Harman",
+      "counts":{
+         "media":108,
+         "followed_by":93,
+         "follows":70
+      },
+      "id":"6948"
    }
 }

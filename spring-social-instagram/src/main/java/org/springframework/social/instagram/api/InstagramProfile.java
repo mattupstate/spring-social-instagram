@@ -5,10 +5,14 @@ import java.util.Map;
 public class InstagramProfile {
 	
 	private final long id;
-	private final String fullName;
 	private final String profilePictureUrl;
 	private final String username;
 	private final Map<String,Integer> counts;
+	private final String fullName;
+	private String bio;
+	private String website;
+	private String firstName;
+	private String lastName;
 	
 	public InstagramProfile(long id, String username, String fullName, String profilePictureUrl, Map<String,Integer> counts) {
 		this.id = id;
@@ -49,4 +53,20 @@ public class InstagramProfile {
     public int getFollowedBy() {
         return counts.get("followed_by");
     }
+
+	public String getBio() {
+		return bio;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
 }
