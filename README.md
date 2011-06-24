@@ -16,7 +16,7 @@ Note: the --recursive switch above is important, as spring-social uses git submo
 
 An example project is available at https://github.com/mattupstate/spring-social-instagram-example
 
-### Using Eclipse
+## Using Eclipse
 
 To generate Eclipse metadata (.classpath and .project files), do the following:
 
@@ -26,13 +26,13 @@ Once complete, you may then import the projects into Eclipse as usual:
 
     File -> Import -> Existing projects into workspace
 
-### Using IntelliJ
+## Using IntelliJ
 
 To generate IDEA metadata (.iml and .ipr files), do the following:
 
     ./gradlew idea
 
-### Documentation
+## Documentation
 
 To build the JavaDoc, do the following from within the root directory:
 
