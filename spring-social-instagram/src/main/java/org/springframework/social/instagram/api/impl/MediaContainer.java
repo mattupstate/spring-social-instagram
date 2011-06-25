@@ -4,15 +4,10 @@ import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.springframework.social.instagram.api.Media;
 
 @JsonDeserialize(using=MediaContainerDeserializer.class)
-public class MediaContainer {
-	
-	private Media media;
+public class MediaContainer extends AbstractInstagramResponseContainer<Media> {
 	
 	public MediaContainer(Media media) {
-		this.media = media;
+		super(media);
 	}
 	
-	public Media getMedia() {
-		return media;
-	}
 }

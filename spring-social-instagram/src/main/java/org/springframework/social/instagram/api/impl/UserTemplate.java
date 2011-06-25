@@ -23,11 +23,11 @@ public class UserTemplate extends AbstractInstagramOperations implements UserOpe
 
 	public InstagramProfile getUser() {
 		requireUserAuthorization();
-		return get(buildUri(USERS_ENDPOINT + "self/"), InstagramProfileContainer.class).getProfile();
+		return get(buildUri(USERS_ENDPOINT + "self/"), InstagramProfileContainer.class).getObject();
 	}
 
 	public InstagramProfile getUser(long userId) {
-		return get(buildUri(USERS_ENDPOINT + Long.toString(userId) + "/"), InstagramProfileContainer.class).getProfile();
+		return get(buildUri(USERS_ENDPOINT + Long.toString(userId) + "/"), InstagramProfileContainer.class).getObject();
 	}
 
 	public PagedMediaList getFeed() {

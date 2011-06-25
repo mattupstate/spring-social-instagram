@@ -19,7 +19,7 @@ public class TagTemplate extends AbstractInstagramOperations implements TagOpera
 	}
 	
 	public Tag getTag(String tagName) {
-		return get(buildUri(TAGS_ENDPOINT + tagName +"/"), Tag.class);
+		return get(buildUri(TAGS_ENDPOINT + tagName +"/"), TagContainer.class).getObject();
 	}
 
 	public PagedMediaList getRecentMedia(String tagName) {

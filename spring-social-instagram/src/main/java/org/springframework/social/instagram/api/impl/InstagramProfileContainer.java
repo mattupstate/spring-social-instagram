@@ -4,15 +4,10 @@ import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.springframework.social.instagram.api.InstagramProfile;
 
 @JsonDeserialize(using=InstagramProfileContainerDeserializer.class)
-public class InstagramProfileContainer {
-	
-	private InstagramProfile profile;
+public class InstagramProfileContainer extends AbstractInstagramResponseContainer<InstagramProfile>{
 	
 	public InstagramProfileContainer(InstagramProfile profile) {
-		this.profile = profile;
+		super(profile);
 	}
 	
-	public InstagramProfile getProfile() {
-		return profile;
-	}
 }
