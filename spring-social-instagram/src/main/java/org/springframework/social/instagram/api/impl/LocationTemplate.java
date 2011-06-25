@@ -19,7 +19,7 @@ public class LocationTemplate extends AbstractInstagramOperations implements Loc
 	}
 	
 	public Location getLocation(long locationId) {
-		return get(buildUri(LOCATIONS_ENDPOINT + Long.toString(locationId) +"/"), Location.class);
+		return get(buildUri(LOCATIONS_ENDPOINT + Long.toString(locationId) +"/"), LocationContainer.class).getObject();
 	}
 
 	public PagedMediaList getRecentMedia(long locationId) {

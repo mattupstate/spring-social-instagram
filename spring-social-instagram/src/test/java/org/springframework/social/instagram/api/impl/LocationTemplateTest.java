@@ -1,5 +1,8 @@
 package org.springframework.social.instagram.api.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.social.test.client.RequestMatchers.method;
 import static org.springframework.social.test.client.RequestMatchers.requestTo;
@@ -12,7 +15,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.social.instagram.api.Location;
 import org.springframework.social.instagram.api.PagedMediaList;
 
-@SuppressWarnings("unused")
 public class LocationTemplateTest extends AbstractInstagramApiTest {
 
 	@Test
@@ -22,6 +24,7 @@ public class LocationTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/location.json", getClass()), responseHeaders));
 		
 		Location location = instagram.locationOperations().getLocation(12345);
+		assertEquals(37.782654745657382, location.getLatitude(), 0);
 		mockServer.verify();
 	}
 	
@@ -54,6 +57,7 @@ public class LocationTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/location-search.json", getClass()), responseHeaders));
 		
 		List<Location> locations = instagram.locationOperations().search(100, 200);
+		assertTrue(locations.size() > 0);
 		mockServer.verify();
 	}
 	
@@ -64,6 +68,7 @@ public class LocationTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/location-search.json", getClass()), responseHeaders));
 		
 		List<Location> locations = instagram.locationOperations().search(100, 200, 2000);
+		assertTrue(locations.size() > 0);
 		mockServer.verify();
 	}
 	
@@ -74,6 +79,7 @@ public class LocationTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/location-search.json", getClass()), responseHeaders));
 		
 		List<Location> locations = instagram.locationOperations().search(1000);
+		assertTrue(locations.size() > 0);
 		mockServer.verify();
 	}
 }
