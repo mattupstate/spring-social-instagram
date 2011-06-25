@@ -74,7 +74,7 @@ public class UserTemplate extends AbstractInstagramOperations implements UserOpe
 
 	public Relationship getRelationship(long userId) {
 		requireUserAuthorization();
-		return get(buildUri(USERS_ENDPOINT + Long.toString(userId) + "/relationship/"), RelationshipContainer.class).getRelationship();
+		return get(buildUri(USERS_ENDPOINT + Long.toString(userId) + "/relationship/"), RelationshipContainer.class).getObject();
 	}
 
 	public void followUser(long userId) {
