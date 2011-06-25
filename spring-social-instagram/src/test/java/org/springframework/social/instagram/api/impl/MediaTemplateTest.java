@@ -18,7 +18,6 @@ import org.springframework.social.instagram.api.Comment;
 import org.springframework.social.instagram.api.InstagramProfile;
 import org.springframework.social.instagram.api.Media;
 
-@SuppressWarnings("unused")
 public class MediaTemplateTest extends AbstractInstagramApiTest {
 	
 	@Test
@@ -29,6 +28,7 @@ public class MediaTemplateTest extends AbstractInstagramApiTest {
 		
 		Media media = instagram.mediaOperations().getMedia(48904105);
 		assertEquals(48904105, media.getId());
+		assertTrue(media.getTags().contains("cat") && media.getTags().contains("food"));
 		mockServer.verify();
 	}
 	
@@ -39,6 +39,7 @@ public class MediaTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/media-list.json", getClass()), responseHeaders));
 		
 		List<Media> media = instagram.mediaOperations().getPopular();
+		assertTrue(media.size() > 0);
 		mockServer.verify();
 	}
 	
@@ -49,6 +50,7 @@ public class MediaTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/media-list.json", getClass()), responseHeaders));
 		
 		List<Media> media = instagram.mediaOperations().search(100d, 200d);
+		assertTrue(media.size() > 0);
 		mockServer.verify();
 	}
 	
@@ -59,6 +61,7 @@ public class MediaTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/media-list.json", getClass()), responseHeaders));
 		
 		List<Media> media = instagram.mediaOperations().search(100d, 200d, 1000);
+		assertTrue(media.size() > 0);
 		mockServer.verify();
 	}
 	
@@ -69,6 +72,7 @@ public class MediaTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/media-list.json", getClass()), responseHeaders));
 		
 		List<Media> media = instagram.mediaOperations().search(100d, 200d, 1000l, 2000l, 1000);
+		assertTrue(media.size() > 0);
 		mockServer.verify();
 	}
 	
@@ -79,6 +83,7 @@ public class MediaTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/user-list.json", getClass()), responseHeaders));
 	
 		List<InstagramProfile> likes = instagram.mediaOperations().getLikes(12345);
+		assertTrue(likes.size() > 0);
 		mockServer.verify();
 	}
 	
@@ -89,6 +94,7 @@ public class MediaTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/comment-list.json", getClass()), responseHeaders));
 	
 		List<Comment> comments = instagram.mediaOperations().getComments(12345);
+		assertTrue(comments.size() > 0);
 		mockServer.verify();
 	}
 	
