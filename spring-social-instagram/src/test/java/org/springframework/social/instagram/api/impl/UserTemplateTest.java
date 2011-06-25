@@ -1,6 +1,8 @@
 package org.springframework.social.instagram.api.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.social.test.client.RequestMatchers.body;
@@ -16,7 +18,6 @@ import org.springframework.social.instagram.api.InstagramProfile;
 import org.springframework.social.instagram.api.PagedMediaList;
 import org.springframework.social.instagram.api.Relationship;
 
-@SuppressWarnings("unused")
 public class UserTemplateTest extends AbstractInstagramApiTest {
 
 	@Test
@@ -70,6 +71,7 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/user-list.json", getClass()), responseHeaders));
 		
 		List<InstagramProfile> follows = instagram.userOperations().getFollowedBy(12345);
+		assertTrue(follows.size() > 0);
 		mockServer.verify();
 	}
 	
@@ -80,6 +82,7 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/user-list.json", getClass()), responseHeaders));
 		
 		List<InstagramProfile> follows = instagram.userOperations().getFollows(12345);
+		assertTrue(follows.size() > 0);
 		mockServer.verify();
 	}
 	
@@ -90,6 +93,7 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/user-list.json", getClass()), responseHeaders));
 		
 		List<InstagramProfile> follows = instagram.userOperations().getRequestedBy();
+		assertTrue(follows.size() > 0);
 		mockServer.verify();
 	}
 	
@@ -100,6 +104,8 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 			.andRespond(withResponse(new ClassPathResource("testdata/relationship.json", getClass()), responseHeaders));
 	
 		Relationship relationship = instagram.userOperations().getRelationship(12345);
+		assertNotNull(relationship.getIncomingStatus());
+		assertNotNull(relationship.getOutgoingStatus());
 		mockServer.verify();
 	}
 	
