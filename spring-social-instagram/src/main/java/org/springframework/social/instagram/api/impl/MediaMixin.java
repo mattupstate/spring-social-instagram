@@ -19,7 +19,7 @@ import org.springframework.social.instagram.api.Location;
 abstract class MediaMixin {
     @JsonCreator
     public MediaMixin(
-            @JsonProperty("id") long id,
+            @JsonProperty("id") String id,
             @JsonProperty("filter") String filter,
             @JsonProperty("link") String link,
             @JsonProperty("caption") Caption caption,
