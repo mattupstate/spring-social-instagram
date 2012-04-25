@@ -9,6 +9,6 @@ abstract class PaginationMixin {
 	@JsonCreator
 	PaginationMixin(
 			@JsonProperty("next_url") String nextUrl,
-			@JsonProperty("next_max_id") long nextMaxId,
-			@JsonProperty("next_min_id") long nextMinId) {}
+			@JsonProperty("next_max_id") String nextMaxId,
+			@JsonProperty("next_min_id") String nextMinId) {}
 }
