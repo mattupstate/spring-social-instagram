@@ -1,13 +1,13 @@
 package org.springframework.social.instagram.api.impl;
 
+import org.springframework.social.instagram.api.Location;
+import org.springframework.social.instagram.api.LocationOperations;
+import org.springframework.social.instagram.api.PagedMediaList;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.social.instagram.api.Location;
-import org.springframework.social.instagram.api.LocationOperations;
-import org.springframework.social.instagram.api.PagedMediaList;
 
 /**
  * Implementation of {@link LocationOperations}, providing a binding to Instagram's location-oriented REST resources.
@@ -18,21 +18,21 @@ public class LocationTemplate extends AbstractInstagramOperations implements Loc
 		super(instagram, isAuthorizedForUser);
 	}
 	
-	public Location getLocation(long locationId) {
-		return get(buildUri(LOCATIONS_ENDPOINT + Long.toString(locationId) +"/"), LocationContainer.class).getObject();
+	public Location getLocation(String locationId) {
+		return get(buildUri(LOCATIONS_ENDPOINT + locationId +"/"), LocationContainer.class).getObject();
 	}
 
-	public PagedMediaList getRecentMedia(long locationId) {
-		return getRecentMedia(locationId, 0, 0, 0, 0);
+	public PagedMediaList getRecentMedia(String locationId) {
+		return getRecentMedia(locationId, null, null, 0, 0);
 	}
 	
-	public PagedMediaList getRecentMedia(long locationId, long maxId, long minId, long minTimeStamp, long maxTimeStamp) {
+	public PagedMediaList getRecentMedia(String locationId, String maxId, String minId, long minTimeStamp, long maxTimeStamp) {
 		Map<String,String> params = new HashMap<String,String>();
-		if(maxId > 0) params.put("max_id", Long.toString(maxId));
-		if(minId > 0) params.put("min_id", Long.toString(minId));
+		if(maxId != null) params.put("max_id", maxId);
+		if(minId != null) params.put("min_id", minId);
 		if(minTimeStamp > 0) params.put("min_timestamp", Long.toString(minTimeStamp));
 		if(maxTimeStamp > 0) params.put("max_timestamp", Long.toString(maxTimeStamp));
-		return get(buildUri(LOCATIONS_ENDPOINT + Long.toString(locationId) + "/media/recent/", params), PagedMediaList.class);
+		return get(buildUri(LOCATIONS_ENDPOINT + locationId + "/media/recent/", params), PagedMediaList.class);
 	}
 
 	public List<Location> search(double latitude, double longitude) {

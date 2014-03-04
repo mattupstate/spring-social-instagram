@@ -3,10 +3,10 @@ package org.springframework.social.instagram.api;
 public class Pagination {
 	
 	private String nextUrl;
-	private long nextMaxId;
-	private long nextMinId;
+	private String nextMaxId;
+	private String nextMinId;
 	
-	public Pagination(String nextUrl, long nextMaxId, long nextMinId) {
+	public Pagination(String nextUrl, String nextMaxId, String nextMinId) {
 		this.nextUrl = nextUrl;
 		this.nextMaxId = nextMaxId;
 		this.nextMinId = nextMinId;
@@ -16,11 +16,11 @@ public class Pagination {
 		return nextUrl;
 	}
 
-	public long getNextMaxId() {
+	public String getNextMaxId() {
 		return nextMaxId;
 	}
 
-	public long getNextMinId() {
+	public String getNextMinId() {
 		return nextMinId;
 	}
 

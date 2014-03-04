@@ -1,7 +1,7 @@
 package org.springframework.social.instagram.api.impl;
 
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.module.SimpleModule;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
 import org.springframework.social.instagram.api.Caption;
 import org.springframework.social.instagram.api.Comment;
 import org.springframework.social.instagram.api.CommentsInfo;
@@ -14,11 +14,14 @@ import org.springframework.social.instagram.api.PagedMediaList;
 import org.springframework.social.instagram.api.Pagination;
 import org.springframework.social.instagram.api.Relationship;
 import org.springframework.social.instagram.api.Tag;
+import org.springframework.social.instagram.api.Video;
 
 public class InstagramModule extends SimpleModule {
 
+    private static final long serialVersionUID = 1L;
+
     public InstagramModule() {
-        super(InstagramModule.class.getName(), new Version(1, 0, 0, null));
+        super(InstagramModule.class.getName());
     }
 
     @Override public void setupModule(SetupContext context) {
@@ -34,6 +37,7 @@ public class InstagramModule extends SimpleModule {
         context.setMixInAnnotations(Pagination.class, PaginationMixin.class);
         context.setMixInAnnotations(Relationship.class, RelationshipMixin.class);
         context.setMixInAnnotations(Tag.class, TagMixin.class);
+        context.setMixInAnnotations(Video.class, VideoMixin.class);
     }
 
 }

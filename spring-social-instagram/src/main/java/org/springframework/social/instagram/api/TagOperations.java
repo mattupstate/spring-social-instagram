@@ -26,7 +26,7 @@ public interface TagOperations {
 	 * @param minId		Will return media before this ID
 	 * @return	A list of media
 	 */
-	PagedMediaList getRecentMedia(String tagName, long maxId, long minId);
+	PagedMediaList getRecentMedia(String tagName, String maxId, String minId);
 
 	/**
 	 * Search for tags by name - results are ordered first as an exact match, then by popularity.

@@ -24,7 +24,7 @@ public class InstagramAdapter implements ApiAdapter<Instagram> {
 
 	public void setConnectionValues(Instagram instagram, ConnectionValues values) {
 		InstagramProfile profile = instagram.userOperations().getUser();
-		values.setProviderUserId(Long.toString(profile.getId()));
+		values.setProviderUserId(profile.getId());
 		values.setDisplayName(profile.getUsername());
 		values.setImageUrl(profile.getProfilePictureUrl());
 	}
@@ -35,7 +35,7 @@ public class InstagramAdapter implements ApiAdapter<Instagram> {
 	}
 
 	public void updateStatus(Instagram instagram, String message) {
-		// 
+		throw new UnsupportedOperationException();
 	}
 
 }

@@ -20,7 +20,7 @@ public interface UserOperations {
 	 * @param userId
 	 * @return	Instagram profile
 	 */
-	InstagramProfile getUser(long userId);
+	InstagramProfile getUser(String userId);
 	
 	/**
 	 * Get the first page of the authenticated user's feed
@@ -34,14 +34,14 @@ public interface UserOperations {
      * @param minId Get media after this ID
      * @return List of media
      */
-	PagedMediaList getFeed(long maxId, long minId);
+	PagedMediaList getFeed(String maxId, String minId);
 	
 	/**
 	 * Get recent media of a specific user
 	 * @param userId
 	 * @return	List of media
 	 */
-	 PagedMediaList getRecentMedia(long userId);
+	 PagedMediaList getRecentMedia(String userId);
 	
 	/**
      * Get a range of recent media of a specific user
@@ -52,7 +52,7 @@ public interface UserOperations {
      * @param manTimestamp Get media before this Unix timestamp
      * @return  List of media
      */
-	 PagedMediaList getRecentMedia(long userId, long maxId, long minId, long minTimestamp, long maxTimestamp);
+	 PagedMediaList getRecentMedia(String userId, String maxId, String minId, long minTimestamp, long maxTimestamp);
 	
 	/**
 	 * Search for users
@@ -66,14 +66,14 @@ public interface UserOperations {
 	 * @param userId
 	 * @return	List of profiles
 	 */
-	List<InstagramProfile> getFollows(long userId);
+	List<InstagramProfile> getFollows(String userId);
 	
 	/**
 	 * Get the list of users the specified user is followed by
 	 * @param userId
 	 * @return	List of profiles
 	 */
-	List<InstagramProfile> getFollowedBy(long userId);
+	List<InstagramProfile> getFollowedBy(String userId);
 	
 	/**
 	 * List the users who have requested the authenticated user's permission to follow
@@ -86,43 +86,43 @@ public interface UserOperations {
 	 * @param userId
 	 * @return User relationship
 	 */
-	Relationship getRelationship(long userId);
+	Relationship getRelationship(String userId);
 	
 	/**
 	 * Send a request to follow the specified user
 	 * @param userId
 	 */
-	void followUser(long userId);
+	void followUser(String userId);
 	
 	/**
 	 * Stop following the specified user
 	 * @param userId
 	 */
-	void unfollowUser(long userId);
+	void unfollowUser(String userId);
 	
 	/**
 	 * Block the specified user
 	 * @param userId
 	 */
-	void blockUser(long userId);
+	void blockUser(String userId);
 	
 	/**
 	 * Unblock the specified user
 	 * @param userId
 	 */
-	void unblockUser(long userId);
+	void unblockUser(String userId);
 	
 	/**
 	 * Approve a user's request to follow the authenticated user
 	 * @param userId
 	 */
-	void approveUser(long userId);
+	void approveUser(String userId);
 	
 	/**
 	 * Deny a user's request to follow the authenticated user
 	 * @param user
 	 */
-	void denyUser(long user);
+	void denyUser(String user);
 	
 	public static final String USERS_ENDPOINT = "users/";
 }

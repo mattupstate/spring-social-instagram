@@ -10,47 +10,47 @@ public interface MediaOperations {
 	 * @param mediaId
 	 * @param text
 	 */
-	void addComment(long mediaId, String text);
+	void addComment(String mediaId, String text);
 	
 	/**
 	 * Set a like on this media by the currently authenticated user.
 	 * @param mediaId
 	 */
-	void addLike(long mediaId);
+	void addLike(String mediaId);
 	
 	/**
 	 * Remove a comment either on the authenticated user's media or authored by the authenticated user.
 	 * @param mediaId
 	 * @param commentId
 	 */
-	void deleteComment(long mediaId, long commentId);
+	void deleteComment(String mediaId, String commentId);
 	
 	/**
 	 * Remove a like on this media by the currently authenticated user.
 	 * @param mediaId
 	 */
-	void deleteLike(long mediaId);
+	void deleteLike(String mediaId);
 	
 	/**
 	 * Get a full list of comments on a media.
 	 * @param mediaId
 	 * @return A list of comments
 	 */
-	List<Comment> getComments(long mediaId);
+	List<Comment> getComments(String mediaId);
 	
 	/**
 	 * Get a list of users who have liked this media.
 	 * @param mediaId
 	 * @return A list of users
 	 */
-	List<InstagramProfile> getLikes(long mediaId);
+	List<InstagramProfile> getLikes(String mediaId);
 	
 	/**
 	 * Get information about a media object.
 	 * @param mediaId
 	 * @return Media information
 	 */
-	Media getMedia(long mediaId);
+	Media getMedia(String mediaId);
 	
 	/**
 	 * Get a list of what media is most popular at the moment.

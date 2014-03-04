@@ -1,14 +1,15 @@
 package org.springframework.social.instagram.api.impl;
 
-import java.io.IOException;
-import java.util.Map;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.codehaus.jackson.JsonFactory;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.social.instagram.api.InstagramApiException;
 import org.springframework.web.client.DefaultResponseErrorHandler;
+
+import java.io.IOException;
+import java.util.Map;
 
 public class InstagramErrorHandler extends DefaultResponseErrorHandler {
 	

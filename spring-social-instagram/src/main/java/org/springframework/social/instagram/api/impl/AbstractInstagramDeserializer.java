@@ -1,11 +1,11 @@
 package org.springframework.social.instagram.api.impl;
 
-import java.io.IOException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.JsonToken;
-import org.codehaus.jackson.map.JsonDeserializer;
+import java.io.IOException;
 
 abstract class AbstractInstagramDeserializer<T> extends JsonDeserializer<T> {
     
