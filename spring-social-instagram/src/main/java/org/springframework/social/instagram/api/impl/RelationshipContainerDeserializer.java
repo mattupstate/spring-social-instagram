@@ -1,11 +1,12 @@
 package org.springframework.social.instagram.api.impl;
 
-import java.io.IOException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
 
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.DeserializationContext;
 import org.springframework.social.instagram.api.Relationship;
+
+import java.io.IOException;
 
 public class RelationshipContainerDeserializer extends AbstractInstagramDeserializer<RelationshipContainer> {
     

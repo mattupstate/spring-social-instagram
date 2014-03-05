@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Media {
 	
-	private long id;
+	private String id;
 	private String filter;
 	private String link;
 	private Caption caption;
@@ -15,14 +15,16 @@ public class Media {
     private Date createdTime;
     private boolean userHasLiked;
     private Map<String,Image> images;
+    private Map<String,Video> videos;
     private List<String> tags;
     private LikesInfo likes;
 	private CommentsInfo comments;
 	
-	public Media(long id, String filter, String link,
+	public Media(String id, String filter, String link,
 			 Caption caption, InstagramProfile user, Location location,
-			 Date createdTime, boolean userHasLiked, Map<String,Image> images,
-			 List<String> tags, LikesInfo likes, CommentsInfo comments) {
+			 Date createdTime, boolean userHasLiked, Map<String,Image> images, 
+			 Map<String,Video> videos, List<String> tags, LikesInfo likes, 
+			 CommentsInfo comments) {
 		
 		this.id = id;
 		this.filter = filter;
@@ -38,7 +40,7 @@ public class Media {
         this.comments = comments;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -72,6 +74,10 @@ public class Media {
     
     public Map<String,Image> getImages() {
         return images;
+    }
+    
+    public Map<String, Video> getVideos() {
+        return videos;
     }
     
     public List<String> getTags() {

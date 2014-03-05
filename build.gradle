@@ -24,7 +24,6 @@
 // Configuration for the root project
 // -----------------------------------------------------------------------------
 description = 'Spring Social Instagram'
-abbreviation = 'SOCIAL-INSTAGRAM'
 
 apply plugin: 'base'
 apply plugin: 'idea'
@@ -51,9 +50,9 @@ allprojects {
 
     // default set of maven repositories to be used when resolving dependencies
     repositories {
-        mavenRepo urls: 'http://maven.springframework.org/release'
-        mavenRepo urls: 'http://maven.springframework.org/milestone'
-        mavenRepo urls: 'http://maven.springframework.org/snapshot'
+        maven { url 'http://repo.spring.io/release' }
+        maven { url 'http://repo.spring.io/milestone' }
+        maven { url 'http://repo.spring.io/snapshot' }
         mavenCentral()
     }
 }
@@ -67,7 +66,7 @@ allprojects {
 // @see configure(*) sections below
 // -----------------------------------------------------------------------------
 
-javaprojects = subprojects.findAll { project ->
+ext.javaprojects = subprojects.findAll { project ->
     project.path.startsWith(':spring-social-')
 }
 
@@ -81,24 +80,25 @@ configure(javaprojects) {
     apply plugin: 'eclipse' // `gradle eclipse` to generate .classpath/.project
     apply plugin: 'idea' // `gradle idea` to generate .ipr/.iml
 
-    // set up dedicated directories for jars and source jars.
-    // this makes it easier when putting together the distribution
-    libsBinDir = new File(libsDir, 'bin')
-    libsSrcDir = new File(libsDir, 'src')
-
+    ext {
+        // set up dedicated directories for jars and source jars.
+        // this makes it easier when putting together the distribution
+        libsBinDir = new File(libsDir, 'bin')
+        libsSrcDir = new File(libsDir, 'src')
+        
+        springSocialVersion = '1.1.0.M4'
+        springVersion = '4.0.1.RELEASE'
+        jacksonVersion = '2.2.2'
+        junitVersion = '4.11'
+        mockitoVersion = '1.9.5'
+        springVersion = '4.0.1.RELEASE'
+    }
+    
     // add tasks for creating source jars and generating poms etc
     apply from: "$buildSrcDir/maven-deployment.gradle"
 
     // add tasks for finding and publishing .xsd files
     apply from: "$buildSrcDir/schema-publication.gradle"
-
-    springSocialVersion = '1.0.0.RELEASE'
-    jacksonVersion = '1.8.5'
-    jspApiVersion = '2.1'
-    junitVersion = '4.9'
-    mockitoVersion = '1.8.5'
-    servletApiVersion = '2.5'
-    springVersion = '3.1.0.M2'
 
     sourceSets {
         main {
@@ -124,7 +124,7 @@ configure(javaprojects) {
     [compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:all']
 
     // generate .classpath files without GRADLE_CACHE variable (GRADLE-1079)
-    eclipseClasspath.variables = [:]
+    eclipse.pathVariables = [:]
 }
 
 
@@ -138,10 +138,8 @@ project('spring-social-instagram') {
     description = 'Instagram API'
     dependencies {
         compile "org.springframework.social:spring-social-core:$springSocialVersion"
-        compile "org.codehaus.jackson:jackson-mapper-asl:$jacksonVersion"
-        compile ("javax.servlet:servlet-api:$servletApiVersion") { provided = true }
-        compile ("javax.servlet.jsp:jsp-api:$jspApiVersion") { provided = true }
-        testCompile "org.springframework.social:spring-social-test:$springSocialVersion"
+        compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+        compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     }
 }
 
@@ -149,7 +147,16 @@ project('spring-social-instagram') {
 // Configuration for the docs subproject
 // -----------------------------------------------------------------------------
 project('docs') {
-    apply from: "$buildSrcDir/docs.gradle"
+    apply plugin: 'base'
+    task api(type: Javadoc) {
+        source javaprojects.collect { project ->
+            project.sourceSets.main.allJava
+        }
+        classpath = files(javaprojects.collect { project ->
+            project.sourceSets.main.compileClasspath
+        })
+        destinationDir = file("build/api")
+    }
 }
 
 apply from: "$buildSrcDir/dist.gradle"

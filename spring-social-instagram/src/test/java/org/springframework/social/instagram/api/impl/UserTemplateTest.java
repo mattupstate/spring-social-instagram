@@ -5,10 +5,10 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
-import static org.springframework.social.test.client.RequestMatchers.body;
-import static org.springframework.social.test.client.RequestMatchers.method;
-import static org.springframework.social.test.client.RequestMatchers.requestTo;
-import static org.springframework.social.test.client.ResponseCreators.withResponse;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void getUser() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/self/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(GET))
-			.andRespond(withResponse(new ClassPathResource("testdata/user-profile.json", getClass()), responseHeaders));
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/user-profile.json", getClass())).headers(responseHeaders));
 		
 		InstagramProfile user = instagram.userOperations().getUser();
 		assertEquals("tomharman", user.getUsername());
@@ -35,9 +35,9 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void getSpecificUser() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(GET))
-			.andRespond(withResponse(new ClassPathResource("testdata/user-profile.json", getClass()), responseHeaders));
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/user-profile.json", getClass())).headers(responseHeaders));
 		
-		InstagramProfile user = instagram.userOperations().getUser(12345);
+		InstagramProfile user = instagram.userOperations().getUser("12345");
 		assertEquals("tomharman", user.getUsername());
 		mockServer.verify();
 	}
@@ -46,7 +46,7 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void getFeed() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/self/feed/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(GET))
-			.andRespond(withResponse(new ClassPathResource("testdata/recent-media.json", getClass()), responseHeaders));
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/recent-media.json", getClass())).headers(responseHeaders));
 		
 		PagedMediaList media = instagram.userOperations().getFeed();
 		assertPagedResults(media);
@@ -57,9 +57,9 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void getRecentMedia() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/media/recent/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(GET))
-			.andRespond(withResponse(new ClassPathResource("testdata/recent-media.json", getClass()), responseHeaders));
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/recent-media.json", getClass())).headers(responseHeaders));
 	
-		PagedMediaList media = instagram.userOperations().getRecentMedia(12345);
+		PagedMediaList media = instagram.userOperations().getRecentMedia("12345");
 		assertPagedResults(media);
 		mockServer.verify();
 	}
@@ -68,9 +68,9 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void getFollowedBy() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/followed-by/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(GET))
-			.andRespond(withResponse(new ClassPathResource("testdata/user-list.json", getClass()), responseHeaders));
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/user-list.json", getClass())).headers(responseHeaders));
 		
-		List<InstagramProfile> follows = instagram.userOperations().getFollowedBy(12345);
+		List<InstagramProfile> follows = instagram.userOperations().getFollowedBy("12345");
 		assertTrue(follows.size() > 0);
 		mockServer.verify();
 	}
@@ -79,9 +79,9 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void getFollows() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/follows/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(GET))
-			.andRespond(withResponse(new ClassPathResource("testdata/user-list.json", getClass()), responseHeaders));
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/user-list.json", getClass())).headers(responseHeaders));
 		
-		List<InstagramProfile> follows = instagram.userOperations().getFollows(12345);
+		List<InstagramProfile> follows = instagram.userOperations().getFollows("12345");
 		assertTrue(follows.size() > 0);
 		mockServer.verify();
 	}
@@ -90,7 +90,7 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void getRequestedBy() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/self/requested-by/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(GET))
-			.andRespond(withResponse(new ClassPathResource("testdata/user-list.json", getClass()), responseHeaders));
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/user-list.json", getClass())).headers(responseHeaders));
 		
 		List<InstagramProfile> follows = instagram.userOperations().getRequestedBy();
 		assertTrue(follows.size() > 0);
@@ -101,9 +101,9 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void getRelationship() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/relationship/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(GET))
-			.andRespond(withResponse(new ClassPathResource("testdata/relationship.json", getClass()), responseHeaders));
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/relationship.json", getClass())).headers(responseHeaders));
 	
-		Relationship relationship = instagram.userOperations().getRelationship(12345);
+		Relationship relationship = instagram.userOperations().getRelationship("12345");
 		assertNotNull(relationship.getIncomingStatus());
 		assertNotNull(relationship.getOutgoingStatus());
 		mockServer.verify();
@@ -113,10 +113,10 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void followUser() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/relationship/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(POST))
-			.andExpect(body("action=follow"))
-			.andRespond(withResponse(new ClassPathResource("testdata/media-list.json", getClass()), responseHeaders));
+			.andExpect(content().string("action=follow"))
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/media-list.json", getClass())).headers(responseHeaders));
 		
-		instagram.userOperations().followUser(12345);
+		instagram.userOperations().followUser("12345");
 		mockServer.verify();
 	}
 	
@@ -124,10 +124,10 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void unfollowUser() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/relationship/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(POST))
-			.andExpect(body("action=unfollow"))
-			.andRespond(withResponse(new ClassPathResource("testdata/ok-response.json", getClass()), responseHeaders));
+			.andExpect(content().string("action=unfollow"))
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/ok-response.json", getClass())).headers(responseHeaders));
 
-		instagram.userOperations().unfollowUser(12345);
+		instagram.userOperations().unfollowUser("12345");
 		mockServer.verify();
 	}
 	
@@ -135,10 +135,10 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void blockUser() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/relationship/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(POST))
-			.andExpect(body("action=block"))
-			.andRespond(withResponse(new ClassPathResource("testdata/ok-response.json", getClass()), responseHeaders));
+			.andExpect(content().string("action=block"))
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/ok-response.json", getClass())).headers(responseHeaders));
 		
-		instagram.userOperations().blockUser(12345);
+		instagram.userOperations().blockUser("12345");
 		mockServer.verify();
 	}
 	
@@ -146,10 +146,10 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void unblockUser() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/relationship/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(POST))
-			.andExpect(body("action=unblock"))
-			.andRespond(withResponse(new ClassPathResource("testdata/ok-response.json", getClass()), responseHeaders));
+			.andExpect(content().string("action=unblock"))
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/ok-response.json", getClass())).headers(responseHeaders));
 
-		instagram.userOperations().unblockUser(12345);
+		instagram.userOperations().unblockUser("12345");
 		mockServer.verify();
 	}
 	
@@ -157,10 +157,10 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void approveUser() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/relationship/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(POST))
-			.andExpect(body("action=approve"))
-			.andRespond(withResponse(new ClassPathResource("testdata/ok-response.json", getClass()), responseHeaders));
+			.andExpect(content().string("action=approve"))
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/ok-response.json", getClass())).headers(responseHeaders));
 
-		instagram.userOperations().approveUser(12345);
+		instagram.userOperations().approveUser("12345");
 		mockServer.verify();
 	}
 	
@@ -168,10 +168,10 @@ public class UserTemplateTest extends AbstractInstagramApiTest {
 	public void denyUser() {
 		mockServer.expect(requestTo("https://api.instagram.com/v1/users/12345/relationship/?access_token=ACCESS_TOKEN"))
 			.andExpect(method(POST))
-			.andExpect(body("action=deny"))
-			.andRespond(withResponse(new ClassPathResource("testdata/ok-response.json", getClass()), responseHeaders));
+			.andExpect(content().string("action=deny"))
+			.andRespond(withSuccess().body(new ClassPathResource("testdata/ok-response.json", getClass())).headers(responseHeaders));
 
-		instagram.userOperations().denyUser(12345);
+		instagram.userOperations().denyUser("12345");
 		mockServer.verify();
 	}
 }

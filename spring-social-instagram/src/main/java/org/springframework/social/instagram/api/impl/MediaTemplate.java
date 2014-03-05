@@ -1,15 +1,15 @@
 package org.springframework.social.instagram.api.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.social.instagram.api.Comment;
 import org.springframework.social.instagram.api.InstagramProfile;
 import org.springframework.social.instagram.api.Media;
 import org.springframework.social.instagram.api.MediaOperations;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Implementation of {@link MediaOperations}, providing a binding to Instagram's media-oriented REST resources.
@@ -21,38 +21,38 @@ public class MediaTemplate extends AbstractInstagramOperations implements MediaO
 		super(instagram, isAuthorizedForUser);
 	}
 	
-	public void addComment(long mediaId, String text) {
+	public void addComment(String mediaId, String text) {
 		requireUserAuthorization();
 		MultiValueMap<String,String> params = new LinkedMultiValueMap<String, String>();
         params.add("text", text);
-		post(buildUri(MEDIA_ENDPOINT + Long.toString(mediaId) + "/comments/"), params, Map.class);
+		post(buildUri(MEDIA_ENDPOINT + mediaId + "/comments/"), params, Map.class);
 	}
 
-	public void addLike(long mediaId) {
+	public void addLike(String mediaId) {
 		requireUserAuthorization();
-		post(buildUri(MEDIA_ENDPOINT + Long.toString(mediaId) + "/likes/"), new LinkedMultiValueMap<String, String>(), Map.class);
+		post(buildUri(MEDIA_ENDPOINT + mediaId + "/likes/"), new LinkedMultiValueMap<String, String>(), Map.class);
 	}
 
-	public void deleteComment(long mediaId, long commentId) {
+	public void deleteComment(String mediaId, String commentId) {
 		requireUserAuthorization();
-		delete(buildUri(MEDIA_ENDPOINT + Long.toString(mediaId) + "/comments/" + Long.toString(commentId) + "/"));
+		delete(buildUri(MEDIA_ENDPOINT + mediaId + "/comments/" + commentId + "/"));
 	}
 
-	public void deleteLike(long mediaId) {
+	public void deleteLike(String mediaId) {
 		requireUserAuthorization();
-		delete(buildUri(MEDIA_ENDPOINT + Long.toString(mediaId) + "/likes/"));
+		delete(buildUri(MEDIA_ENDPOINT + mediaId + "/likes/"));
 	}
 
-	public List<Comment> getComments(long mediaId) {
-		return get(buildUri(MEDIA_ENDPOINT + Long.toString(mediaId) + "/comments/"), CommentList.class).getList();
+	public List<Comment> getComments(String mediaId) {
+		return get(buildUri(MEDIA_ENDPOINT + mediaId + "/comments/"), CommentList.class).getList();
 	}
 
-	public List<InstagramProfile> getLikes(long mediaId) {
-		return get(buildUri(MEDIA_ENDPOINT + Long.toString(mediaId) + "/likes/"), InstagramProfileList.class).getList();
+	public List<InstagramProfile> getLikes(String mediaId) {
+		return get(buildUri(MEDIA_ENDPOINT + mediaId + "/likes/"), InstagramProfileList.class).getList();
 	}
 
-	public Media getMedia(long mediaId) {
-		return get(buildUri(MEDIA_ENDPOINT + Long.toString(mediaId)+ "/"), MediaContainer.class).getObject();
+	public Media getMedia(String mediaId) {
+		return get(buildUri(MEDIA_ENDPOINT + mediaId+ "/"), MediaContainer.class).getObject();
 	}
 
 	public List<Media> getPopular() {

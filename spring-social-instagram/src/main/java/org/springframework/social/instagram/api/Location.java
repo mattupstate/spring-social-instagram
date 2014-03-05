@@ -2,19 +2,19 @@ package org.springframework.social.instagram.api;
 
 public class Location {
 	
-	private long id;
+	private String id;
 	private String name;
 	private double latitude;
 	private double longitude;
 	
-	public Location(long id, String name, double latitude, double longitude) {
+	public Location(String id, String name, double latitude, double longitude) {
 		this.id = id;
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 

@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class InstagramProfile {
 	
-	private final long id;
+	private final String id;
 	private final String profilePictureUrl;
 	private final String username;
 	private final Map<String,Integer> counts;
@@ -14,7 +14,7 @@ public class InstagramProfile {
 	private String firstName;
 	private String lastName;
 	
-	public InstagramProfile(long id, String username, String fullName, String profilePictureUrl, Map<String,Integer> counts) {
+	public InstagramProfile(String id, String username, String fullName, String profilePictureUrl, Map<String,Integer> counts) {
 		this.id = id;
 		this.username = username;
 		this.fullName = fullName;
@@ -22,7 +22,7 @@ public class InstagramProfile {
 		this.counts = counts;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 	

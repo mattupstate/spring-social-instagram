@@ -10,14 +10,14 @@ public interface LocationOperations {
 	 * @param locationId	Location ID
 	 * @return	Location information
 	 */
-	Location getLocation(long locationId);
+	Location getLocation(String locationId);
 	
 	/**
 	 * Get recent media based on location
 	 * @param locationId	Location ID
 	 * @return	A list of media
 	 */
-	PagedMediaList getRecentMedia(long locationId);
+	PagedMediaList getRecentMedia(String locationId);
 	
 	/**
 	 * Get recent media based on location
@@ -28,7 +28,7 @@ public interface LocationOperations {
 	 * @param maxTimeStamp	Will return media before this UNIX time stamp
 	 * @return	A list of media
 	 */
-	PagedMediaList getRecentMedia(long locationId, long maxId, long minId, long minTimeStamp, long maxTimeStamp);
+	PagedMediaList getRecentMedia(String locationId, String maxId, String minId, long minTimeStamp, long maxTimeStamp);
 	
 	/**
 	 * Search for a location by geographic coordinate using default distance of 1000 meters.

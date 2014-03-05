@@ -1,13 +1,14 @@
 package org.springframework.social.instagram.api.impl;
 
-import java.net.URI;
-import java.util.Collections;
-import java.util.Map;
-
 import org.springframework.social.MissingAuthorizationException;
+import org.springframework.social.instagram.api.Instagram;
 import org.springframework.social.support.URIBuilder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+
+import java.net.URI;
+import java.util.Collections;
+import java.util.Map;
 
 public abstract class AbstractInstagramOperations {
 	
@@ -35,7 +36,7 @@ public abstract class AbstractInstagramOperations {
 	
 	protected void requireUserAuthorization() {
 		if(!isAuthorized) {
-			throw new MissingAuthorizationException();
+			throw new MissingAuthorizationException(Instagram.PROVIDER_ID);
 		}
 	}
 	

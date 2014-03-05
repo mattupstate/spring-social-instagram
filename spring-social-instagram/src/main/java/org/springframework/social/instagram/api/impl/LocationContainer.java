@@ -1,12 +1,13 @@
 package org.springframework.social.instagram.api.impl;
 
-import java.io.IOException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.springframework.social.instagram.api.Location;
+
+import java.io.IOException;
 
 @JsonDeserialize(using=LocationContainer.LocationContainerDeseriazlier.class)
 public class LocationContainer extends AbstractInstagramResponseContainer<Location> {

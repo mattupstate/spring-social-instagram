@@ -1,10 +1,10 @@
 package org.springframework.social.instagram.api.impl;
 
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
+import java.util.Map;
 
 /**
  * Mixin class for adding Jackson annotations to InstagramProfile.
@@ -13,7 +13,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 abstract class InstagramProfileMixin {
     @JsonCreator
     InstagramProfileMixin(
-            @JsonProperty("id") long id, 
+            @JsonProperty("id") String id, 
             @JsonProperty("username") String username, 
             @JsonProperty("full_name") String fullName, 
             @JsonProperty("profile_picture") String profilePictureUrl, 

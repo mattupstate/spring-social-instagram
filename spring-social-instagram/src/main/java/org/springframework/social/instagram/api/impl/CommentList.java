@@ -1,10 +1,11 @@
 package org.springframework.social.instagram.api.impl;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.social.instagram.api.Comment;
+
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class CommentList {
